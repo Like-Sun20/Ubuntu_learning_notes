@@ -1,0 +1,49 @@
+1.命令
+cat 
+1>查看文件内容  cat main.c
+2>合并文件 cat a.txt b.txt > c.txt
+3>向文件写入数据 cat  > a.txt
+ctrl+d 结束写入数据
+此命令会覆盖文件之前的内容
+
+more
+若文件内容多于一屏可显示的数量，则可分屏显示文件内容 more main.c
+但每一页只有一次查看机会，不可再返回上一页
+
+less 
+查看文件内容，会在新的界面上显示文件内容 less main.c
+按q退出查看
+
+tail
+显示文件后n行的内容 tail -n main.c
+(tail main.c 默认显示文件后十行内容）
+
+head 
+显示文件起始前n行内容 head -n main.c
+(head main.c 默认显示文件前十行内容）
+
+find
+在指定位置按文件名字搜索文件 find /home/用户名 -name main.c
+
+grep
+在文件中过滤指定字符串的行 grep "指定字符串" main.c
+（字符串的双引号可有可无）
+grep -c hello main.c 统计文件中含有hello的行数
+grep -v hello main.c 显示文件中没有hello的行
+grep -i hello main.c 忽略hello的字母大小写
+
+| 管道
+可以在两个进程间传递数据 如:ls | grep "cd"(注意目录位置）
+
+wc
+统计文件中单词个数 wc -w main.c
+统计文件中字符个数 wc -c main.c
+统计文件内容行数   wc -l main.c 
+
+2.软件
+--Vim
+命令模式：set nu  显示行数
+set nonu 不显示行数
+nyy 拷贝
+p 粘贴
+ndd 删除/剪切
