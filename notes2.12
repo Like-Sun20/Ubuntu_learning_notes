@@ -1,0 +1,38 @@
+gcc 编译
+
+1.单文件编译
+
+-详细过程
+预编译 gcc -E main.c -o main.i   ---   生成 .i 文件
+编译 gcc -S main.i -o main.s   ---   生成 .s 文件
+汇编 gcc -c main.s -o main.o   ---   生成 .o 文件
+链接 gcc main.o -o main   ---   生成可执行文件
+
+./文件名   ---   运行程序
+
+-较简洁过程
+（1）gcc -c main.c   ---  生成 .o 文件
+（或者 gcc -c main.c -o main.o   ---   生成 .o 文件）
+（2）gcc -o main main.o   ---   生成可执行文件
+(此步骤无 .i 和 .s 文件生成)
+
+-直接完成过程
+gcc -o main main.c
+(此步骤只生成可执行文件)
+
+2. 多文件编译
+
+ -分步骤完成
+（1）gcc -c 使用到的 .c 文件   ---   分别生成各文件对应的 .o 文件
+（2）gcc -o 生成的可执行文件名 各个要使用到的 .o 文件（无先后顺序）
+
+-直接完成
+gcc -o 生成的可执行文件名 各个要使用到的 .c 文件（无先后顺序）
+
+-通过makefile（或者是Meakfile）文件执行操作
+（1）写makefile文件
+（2）通过make命令生成可执行文件
+
+-通过各种方式生成makefile文件
+（1）如libevent，cmake等等
+以libevent为例：1.解压   2.cd+压缩包名称   3.ls 可看到 configure 文件   4. ./configure   5.ls 可看到生成的Makefile 文件   6.可通过 make 执行   7.通过 ls 可看到生成的 .o 文件
