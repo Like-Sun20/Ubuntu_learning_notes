@@ -1,0 +1,45 @@
+-静态库 lib xx .a
+
+如：libfoo.a
+
+生成静态库：1.先生成 .o 文件
+
+                     2.ar crv lib库名.a  放在库中的文件。如：ar crv libfoo.a add.o max.o（foo为库名）
+
+使用静态库：1.先在文件里引用库 #include"foo.h"
+
+                        (若将库移动到了标准库位置，则为 #include<foo.h>
+
+                      2.gcc -o main main.c -L路径 -l库名
+
+                     如：gcc -o main main.c -L. -lfoo
+
+                      （ -L后面跟库的位置 如：-L.表示当前位置；-L后面也可以跟绝对路径）
+
+                     （若将生成的库移动到标准库lib内则无需加 -L表示路径）
+
+                     （ -l后面跟库名）
+
+-共享库 lib xx .so
+
+生成共享库：1.先生成 .o 文件
+
+                      2.通过gcc命令将所有 .o 文件生成共享库
+
+                         如：gcc -shared -fPIC -o libfoo.so add.o max.o
+
+或者 gcc -shared -fPIC -o libfoo.so add.c max.c
+
+使用共享库：ldd + 文件名 可查看共享库位置
+
+                     如：ldd main
+
+                  (因系统只会在标准库里搜索共享库，所以我们要注意共享库位置的确定）
+
+                   第一种：将共享库移动到标准库内
+
+                  第二种：环境变量
+
+                   LD_LIBRARY_ PATH=路径
+
+                  export LD_LIBRARY_PATH
